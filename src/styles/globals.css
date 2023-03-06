@@ -1,3 +1,7 @@
+:root {
+  --header-height: 70px;
+}
+
 /*
   Josh's Custom CSS Reset
   https://www.joshwcomeau.com/css/custom-css-reset/
@@ -11,6 +15,7 @@
 
 * {
   margin: 0;
+  padding: 0;
 }
 
 html,
