@@ -1,0 +1,44 @@
+.features-wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.125rem;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.feature {
+  font-size: 0.75rem;
+  color: #4d4d4d;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (min-width: 290px) {
+  .features-wrapper {
+    gap: 20px;
+  }
+}
+
+@media (min-width: 425px) {
+  .features-wrapper {
+    gap: 30px;
+  }
+
+  .feature {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 595px) {
+  .features-wrapper {
+    gap: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .features-wrapper {
+    gap: 50px;
+  }
+}
