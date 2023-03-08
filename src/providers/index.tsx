@@ -33,6 +33,27 @@ const AppProviders = ({ children }: AppProvidersProps) => {
                 },
               }),
             },
+            Checkbox: {
+              styles: {
+                input: {
+                  cursor: 'pointer',
+                },
+                labelWrapper: {
+                  cursor: 'pointer',
+                },
+                label: {
+                  cursor: 'pointer',
+                },
+              },
+            },
+            Accordion: {
+              styles: (theme) => ({
+                label: {
+                  fontWeight: 500,
+                  color: theme.colors.dark[3],
+                },
+              }),
+            },
           },
         }}
         withCSSVariables
