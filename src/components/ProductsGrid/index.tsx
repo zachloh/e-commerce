@@ -11,7 +11,6 @@ type ProductsGridProps = {
 
 const ProductsGrid = ({ products, recommendedProducts }: ProductsGridProps) => {
   // TODO: Change to use Grid
-  console.log('rendered');
 
   if (products.length === 0) {
     return (
