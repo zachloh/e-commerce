@@ -3,15 +3,18 @@
   width: 100%;
   min-height: 280px;
   overflow: hidden;
-  /* TODO: set radius */
-  /* border-radius: 4px; */
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
 .wrapper:hover .secondary {
   z-index: 2;
+  display: block;
 }
 
 .primary {
   z-index: 1;
+}
+
+.secondary {
+  display: none;
 }
