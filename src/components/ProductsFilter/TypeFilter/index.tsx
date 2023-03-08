@@ -1,12 +1,17 @@
 import { Accordion, Checkbox, Stack } from '@mantine/core';
 import React from 'react';
 
-const TypeFilter = () => {
+type TypeFilterProps = {
+  types: string[];
+  setTypes: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+const TypeFilter = ({ types, setTypes }: TypeFilterProps) => {
   return (
     <Accordion.Item value="type">
       <Accordion.Control>Type</Accordion.Control>
       <Accordion.Panel>
-        <Checkbox.Group>
+        <Checkbox.Group value={types} onChange={setTypes}>
           <Stack spacing={10}>
             <Checkbox value="Shirts" label="Shirts" />
             <Checkbox value="Suits" label="Suits" />

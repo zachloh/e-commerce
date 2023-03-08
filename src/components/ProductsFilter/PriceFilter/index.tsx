@@ -1,30 +1,27 @@
-import { Accordion, Button, Group, NumberInput, Text } from '@mantine/core';
-import React, { useState } from 'react';
+import { Accordion, Group, NumberInput, Text } from '@mantine/core';
+import React from 'react';
 
-const PriceFilter = () => {
-  const [isPriceError, setIsPriceError] = useState(false);
-  const [minPrice, setMinPrice] = useState<number | ''>('');
-  const [maxPrice, setMaxPrice] = useState<number | ''>('');
+type PriceFilterProps = {
+  minPrice: number | '';
+  setMinPrice: React.Dispatch<React.SetStateAction<number | ''>>;
+  maxPrice: number | '';
+  setMaxPrice: React.Dispatch<React.SetStateAction<number | ''>>;
+};
 
+const PriceFilter = ({
+  minPrice,
+  setMinPrice,
+  maxPrice,
+  setMaxPrice,
+}: PriceFilterProps) => {
   const handleChange = (
     value: number | '',
     setValue: React.Dispatch<React.SetStateAction<number | ''>>
   ) => {
-    setIsPriceError(false);
-
     if (typeof value === 'number' && value < 0) {
       setValue(value * -1);
     } else {
       setValue(value);
-    }
-  };
-
-  const handleClickBtn = () => {
-    const min = typeof minPrice === 'number' ? minPrice : 0;
-    const max = typeof maxPrice === 'number' ? maxPrice : Infinity;
-
-    if (max < min) {
-      setIsPriceError(true);
     }
   };
 
@@ -42,7 +39,6 @@ const PriceFilter = () => {
             iconWidth={24}
             value={minPrice}
             onChange={(v) => handleChange(v, setMinPrice)}
-            error={isPriceError}
           />
           <NumberInput
             label="Max"
@@ -53,18 +49,7 @@ const PriceFilter = () => {
             iconWidth={24}
             value={maxPrice}
             onChange={(v) => handleChange(v, setMaxPrice)}
-            error={isPriceError}
           />
-        </Group>
-        {isPriceError && (
-          <Text color="red.8" size={14}>
-            Minimum price must be less than maximum
-          </Text>
-        )}
-        <Group position="right" mt={15}>
-          <Button onClick={handleClickBtn} variant="outline">
-            Apply
-          </Button>
         </Group>
       </Accordion.Panel>
     </Accordion.Item>

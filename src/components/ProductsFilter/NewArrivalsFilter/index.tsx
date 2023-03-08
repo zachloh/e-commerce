@@ -1,18 +1,23 @@
 import { Divider, Text } from '@mantine/core';
-import React, { useState } from 'react';
+import React from 'react';
 import Switch from 'react-switch';
 import styles from './NewArrivalsFilter.module.css';
 
-const NewArrivalsFilter = () => {
-  const [checked, setChecked] = useState(false);
+type NewArrivalsFilterProps = {
+  isNew: boolean;
+  setIsNew: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
+const NewArrivalsFilter = ({ isNew, setIsNew }: NewArrivalsFilterProps) => {
   return (
     <>
       <label className={styles.switch}>
-        <Text span>New Arrivals Only</Text>
+        <Text span color="dark.3" weight={500}>
+          New Arrivals Only
+        </Text>
         <Switch
-          checked={checked}
-          onChange={setChecked}
+          checked={isNew}
+          onChange={setIsNew}
           offColor="#dee2e6"
           onColor="#15aabf"
           handleDiameter={18}

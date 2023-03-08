@@ -1,12 +1,17 @@
 import { Accordion, Checkbox, SimpleGrid } from '@mantine/core';
 import React from 'react';
 
-const SizeFilter = () => {
+type SizeFilterProps = {
+  sizes: string[];
+  setSizes: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+const SizeFilter = ({ sizes, setSizes }: SizeFilterProps) => {
   return (
     <Accordion.Item value="size">
       <Accordion.Control>Size</Accordion.Control>
       <Accordion.Panel>
-        <Checkbox.Group>
+        <Checkbox.Group value={sizes} onChange={setSizes}>
           <SimpleGrid cols={2} verticalSpacing={10}>
             <Checkbox value="S" label="S" />
             <Checkbox value="M" label="M" />
