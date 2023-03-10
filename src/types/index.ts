@@ -99,11 +99,12 @@ export type Product = {
       data: Type;
     };
     sizes: string[];
+    recommended: string[];
   };
 };
 
 export type StrapiResponse<T> = {
-  data: T[];
+  data: T;
   meta: {
     page: number;
     pageCount: number;
