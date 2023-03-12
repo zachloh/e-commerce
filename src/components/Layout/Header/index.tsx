@@ -1,9 +1,11 @@
+import { useTotalQuantity } from '@/stores/cart';
 import {
   ActionIcon,
   Anchor,
   Burger,
   Grid,
   Group,
+  Indicator,
   MediaQuery,
 } from '@mantine/core';
 import { Vollkorn } from 'next/font/google';
@@ -24,6 +26,7 @@ type HeaderProps = {
 const Header = ({ opened, onToggleNavbar, onClose }: HeaderProps) => {
   const router = useRouter();
   const currentRoute = router.asPath;
+  const { totalQuantity } = useTotalQuantity();
 
   return (
     <Grid align="center" mx="auto" h="100%" m={0} px={16} maw={1400}>
@@ -102,12 +105,19 @@ const Header = ({ opened, onToggleNavbar, onClose }: HeaderProps) => {
           </MediaQuery>
           <ActionIcon
             component={Link}
-            href="/"
+            href="/cart"
             variant="transparent"
             aria-label="Cart"
             className={styles.icon}
           >
-            <ShoppingCart color="white" />
+            <Indicator
+              size={16}
+              label={totalQuantity}
+              disabled={totalQuantity === 0}
+              color="cyan.9"
+            >
+              <ShoppingCart color="white" />
+            </Indicator>
           </ActionIcon>
         </Group>
       </Grid.Col>
