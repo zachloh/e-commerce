@@ -1,6 +1,7 @@
+import { useCartStore } from '@/stores/cart';
 import { Product } from '@/types';
 import { ActionIcon, Button, Group, Select, Text, Title } from '@mantine/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { ChevronDown, Heart } from 'tabler-icons-react';
 
 type ProductInfoProps = {
@@ -8,6 +9,19 @@ type ProductInfoProps = {
 };
 
 const ProductInfo = ({ product }: ProductInfoProps) => {
+  const addToCart = useCartStore((state) => state.addToCart);
+
+  const [size, setSize] = useState<string | null>(null);
+  const [error, setError] = useState(false);
+
+  const handleAddToCart = () => {
+    if (size === null) {
+      setError(true);
+      return;
+    }
+    addToCart(product, size);
+  };
+
   return (
     <>
       <Title order={1} size={20} weight={500} mb={20}>
@@ -18,7 +32,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         ${product.attributes.price}.00
       </Text>
       <Select
-        placeholder="Pick a size..."
+        placeholder="Pick a size"
         data={product.attributes.sizes}
         size="md"
         mb={20}
@@ -26,9 +40,12 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         rightSection={<ChevronDown size={20} color="#22B8CF" />}
         styles={{ rightSection: { pointerEvents: 'none' } }}
         aria-label="Pick a size"
+        value={size}
+        onChange={setSize}
+        error={error ? 'Please pick a size' : false}
       />
       <Group noWrap mb={20}>
-        <Button h={50} radius={2} w="100%">
+        <Button h={50} radius={2} w="100%" size="md" onClick={handleAddToCart}>
           ADD TO CART
         </Button>
         <ActionIcon variant="outline" size={50} color="cyan" radius={2}>
