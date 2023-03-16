@@ -1,6 +1,7 @@
 import { CartItem, useCartStore } from '@/stores/cart';
 import {
   ActionIcon,
+  Anchor,
   Divider,
   Grid,
   Group,
@@ -10,6 +11,7 @@ import {
   Text,
 } from '@mantine/core';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useRef, useState } from 'react';
 import { Minus, Plus, X } from 'tabler-icons-react';
 import styles from './CartItem.module.css';
@@ -44,24 +46,36 @@ const CartItem = ({ item }: CartItemProps) => {
     <>
       <Grid m={0} gutterXs={30}>
         <Grid.Col span={4} p={0}>
-          <div className={styles['image-wrapper']}>
-            <Image
-              src={item.attributes.image1.data.attributes.url}
-              alt={item.attributes.image1.data.attributes.alternativeText}
-              fill
-              style={{ objectFit: 'cover', objectPosition: '50% 10%' }}
-              // TODO: Set sizes
-              sizes="25vw"
-              placeholder="blur"
-              blurDataURL={item.attributes.image1.data.attributes.placeholder}
-            />
-          </div>
+          <Anchor
+            component={Link}
+            href={`/product/${item.id}`}
+            sx={{ display: 'block' }}
+          >
+            <div className={styles['image-wrapper']}>
+              <Image
+                src={item.attributes.image1.data.attributes.url}
+                alt={item.attributes.image1.data.attributes.alternativeText}
+                fill
+                style={{ objectFit: 'cover', objectPosition: '50% 10%' }}
+                // TODO: Set sizes
+                sizes="25vw"
+                placeholder="blur"
+                blurDataURL={item.attributes.image1.data.attributes.placeholder}
+              />
+            </div>
+          </Anchor>
         </Grid.Col>
         <Grid.Col span={8} p={0}>
           <Stack justify="space-between" h="100%">
             <div>
               <Group position="apart" w="100%">
-                <Text weight={600}>{item.attributes.title}</Text>
+                <Anchor
+                  component={Link}
+                  href={`/product/${item.id}`}
+                  color="dark"
+                >
+                  <Text weight={600}>{item.attributes.title}</Text>
+                </Anchor>
                 <ActionIcon onClick={handleRemoveFromCart}>
                   <X color="#000" />
                 </ActionIcon>
