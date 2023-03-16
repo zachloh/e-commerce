@@ -1,0 +1,19 @@
+.footer {
+  background-color: var(--mantine-color-dark-6);
+}
+
+.list {
+  list-style-type: none;
+}
+
+.list li {
+  color: white;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
