@@ -1,0 +1,41 @@
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 500px;
+  margin: 80px auto 60px;
+}
+
+.container img {
+  transition: transform 0.5s ease, filter 0.5s ease-in-out;
+}
+
+.container:hover img {
+  filter: brightness(95%);
+  transform: scale(1.005);
+}
+
+.image-wrapper {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+.links {
+  position: absolute;
+  bottom: 0;
+}
