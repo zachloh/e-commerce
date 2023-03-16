@@ -1,4 +1,5 @@
 import { useTotalQuantity } from '@/stores/cart';
+import { useWishlist } from '@/stores/wishlist';
 import {
   ActionIcon,
   Anchor,
@@ -8,14 +9,11 @@ import {
   Indicator,
   MediaQuery,
 } from '@mantine/core';
-import { Vollkorn } from 'next/font/google';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Heart, ShoppingCart, Search } from 'tabler-icons-react';
 import styles from './Header.module.css';
-
-const vollkorn = Vollkorn({ subsets: ['latin'] });
 
 type HeaderProps = {
   opened: boolean;
@@ -27,6 +25,7 @@ const Header = ({ opened, onToggleNavbar, onClose }: HeaderProps) => {
   const router = useRouter();
   const currentRoute = router.asPath;
   const { totalQuantity } = useTotalQuantity();
+  const { wishlist } = useWishlist();
 
   return (
     <Grid align="center" mx="auto" h="100%" m={0} px={16} maw={1400}>
@@ -67,13 +66,12 @@ const Header = ({ opened, onToggleNavbar, onClose }: HeaderProps) => {
           />
         </MediaQuery>
       </Grid.Col>
-      <Grid.Col span="content" p={0} pt={5}>
+      <Grid.Col span="content" p={0}>
         <Anchor
           component={Link}
           href="/"
           color="white"
-          ff={vollkorn.style.fontFamily}
-          weight={700}
+          weight={650}
           className={styles.logo}
         >
           LUXE
@@ -95,12 +93,19 @@ const Header = ({ opened, onToggleNavbar, onClose }: HeaderProps) => {
           <MediaQuery smallerThan={600} styles={{ display: 'none' }}>
             <ActionIcon
               component={Link}
-              href="/"
+              href="/wishlist"
               variant="transparent"
               aria-label="Wishlist"
               className={styles.icon}
             >
-              <Heart color="white" />
+              <Indicator
+                size={16}
+                label={wishlist.length}
+                disabled={wishlist.length === 0}
+                color="cyan.9"
+              >
+                <Heart color="white" />
+              </Indicator>
             </ActionIcon>
           </MediaQuery>
           <ActionIcon
