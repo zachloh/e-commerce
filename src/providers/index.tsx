@@ -1,4 +1,5 @@
 import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import React from 'react';
 import { Montserrat } from 'next/font/google';
 
@@ -58,6 +59,7 @@ const AppProviders = ({ children }: AppProvidersProps) => {
         }}
         withCSSVariables
       >
+        <Notifications position="bottom-center" />
         {children}
       </MantineProvider>
     </>
