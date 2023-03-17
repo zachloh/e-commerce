@@ -29,7 +29,8 @@ const NewArrivals = () => {
             radius={0}
             h={50}
             component={Link}
-            href="/category/men"
+            href="/category/men?filter=new"
+            as="/category/men"
           >
             SHOP MEN
           </Button>
@@ -39,7 +40,8 @@ const NewArrivals = () => {
             radius={0}
             h={50}
             component={Link}
-            href="/category/women"
+            href="/category/women?filter=new"
+            as="/category/women"
           >
             SHOP WOMEN
           </Button>

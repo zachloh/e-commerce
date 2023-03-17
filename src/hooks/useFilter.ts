@@ -1,11 +1,14 @@
 import { useDebouncedValue } from '@mantine/hooks';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 export const useFilter = () => {
+  const { query } = useRouter();
+
   const [types, setTypes] = useState<string[]>([]);
   const [minPrice, setMinPrice] = useState<number | ''>('');
   const [maxPrice, setMaxPrice] = useState<number | ''>('');
-  const [isNew, setIsNew] = useState(false);
+  const [isNew, setIsNew] = useState(query.filter === 'new');
   const [sizes, setSizes] = useState<string[]>([]);
   const [brands, setBrands] = useState<string[]>([]);
 
