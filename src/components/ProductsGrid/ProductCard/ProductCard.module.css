@@ -1,3 +1,7 @@
+.figure {
+  position: relative;
+}
+
 .wrapper {
   position: relative;
   width: 100%;
@@ -6,7 +10,7 @@
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
-.wrapper:hover .secondary {
+.figure:hover .secondary {
   z-index: 2;
   display: block;
 }
@@ -17,4 +21,59 @@
 
 .secondary {
   display: none;
+}
+
+.heart-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  cursor: pointer;
+  height: 2.8rem;
+  width: 2.8rem;
+  border-radius: 30px;
+  border: none;
+  background-color: var(--mantine-color-gray-0);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.16);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heart-button:hover {
+  background-color: var(--mantine-color-gray-1);
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.25);
+}
+
+.heart {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1.5px;
+}
+
+.heart path {
+  color: black;
+  fill: transparent;
+}
+
+.heart-button:hover .heart path,
+.heart-button:focus .heart path {
+  color: var(--mantine-color-cyan-7);
+  fill: transparent;
+  transition: fill 500ms ease, color 500ms ease;
+}
+
+.active path {
+  color: var(--mantine-color-cyan-7);
+  fill: var(--mantine-color-cyan-7);
+}
+
+.heart-button:hover .active path,
+.heart-button:focus .active path {
+  color: var(--mantine-color-cyan-7);
+  fill: var(--mantine-color-cyan-7);
+}
+
+.link {
+  display: block;
 }
