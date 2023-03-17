@@ -107,6 +107,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           radius={2}
           onClick={handleClickWishlist}
           className={styles['heart-button']}
+          aria-label="Add to wishlist"
         >
           <FiHeart
             className={`${styles.heart} ${hearted ? styles.active : ''}`}
