@@ -1,8 +1,13 @@
 import { useCartStore } from '@/stores/cart';
+import { useWishlist, useWishlistStore } from '@/stores/wishlist';
 import { Product } from '@/types';
 import { ActionIcon, Button, Group, Select, Text, Title } from '@mantine/core';
-import React, { useState } from 'react';
-import { ChevronDown, Heart } from 'tabler-icons-react';
+import React, { useEffect, useState } from 'react';
+import { FiHeart } from 'react-icons/fi';
+import { FaShoppingCart } from 'react-icons/fa';
+import { FaBox } from 'react-icons/fa';
+import { ChevronDown } from 'tabler-icons-react';
+import styles from './ProductInfo.module.css';
 
 type ProductInfoProps = {
   product: Product;
@@ -10,9 +15,28 @@ type ProductInfoProps = {
 
 const ProductInfo = ({ product }: ProductInfoProps) => {
   const addToCart = useCartStore((state) => state.addToCart);
+  const { wishlist } = useWishlist();
+  const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
+  const [hearted, setHearted] = useState(false);
 
   const [size, setSize] = useState<string | null>(null);
   const [error, setError] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(false);
+
+  useEffect(() => {
+    const isAddedToWishlist = wishlist.some((item) => item.id === product.id);
+    if (isAddedToWishlist) {
+      setHearted(true);
+    }
+  }, [wishlist, product.id]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAddedToCart(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [addedToCart]);
 
   const handleAddToCart = () => {
     if (size === null) {
@@ -20,6 +44,12 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
       return;
     }
     addToCart(product, size);
+    setAddedToCart(true);
+  };
+
+  const handleClickWishlist = () => {
+    toggleWishlist(product);
+    setHearted((h) => !h);
   };
 
   return (
@@ -41,15 +71,46 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         styles={{ rightSection: { pointerEvents: 'none' } }}
         aria-label="Pick a size"
         value={size}
-        onChange={setSize}
-        error={error ? 'Please pick a size' : false}
+        onChange={(value) => {
+          setSize(value);
+          setError(false);
+        }}
+        error={error}
       />
       <Group noWrap mb={20}>
-        <Button h={50} radius={2} w="100%" size="md" onClick={handleAddToCart}>
-          ADD TO CART
+        <Button
+          h={50}
+          radius={2}
+          w="100%"
+          size="md"
+          onClick={handleAddToCart}
+          disabled={addedToCart}
+          styles={(theme) => ({
+            root: {
+              '&:disabled, &[data-disabled]': {
+                backgroundColor: theme.colors.cyan[6],
+                color: 'white',
+              },
+            },
+          })}
+          className={`${styles['cart-btn']} ${addedToCart ? styles.added : ''}`}
+          aria-label="Add to cart"
+        >
+          <FaShoppingCart className={styles.cart} />
+          <FaBox className={styles.box} />
+          <span className={styles['cart-text']}>ADD TO CART</span>
         </Button>
-        <ActionIcon variant="outline" size={50} color="cyan" radius={2}>
-          <Heart size={26} />
+        <ActionIcon
+          variant="outline"
+          size={50}
+          color="cyan"
+          radius={2}
+          onClick={handleClickWishlist}
+          className={styles['heart-button']}
+        >
+          <FiHeart
+            className={`${styles.heart} ${hearted ? styles.active : ''}`}
+          />
         </ActionIcon>
       </Group>
       <Text weight={600} size={15}>
