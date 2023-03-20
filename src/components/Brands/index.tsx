@@ -34,10 +34,16 @@ const brands = [
 const Brands = () => {
   return (
     <Container size={1200} px={16} mb={80}>
-      <Title order={2} size={28} weight={500} mb={10} align="center">
+      <Title
+        order={2}
+        weight={500}
+        mb={10}
+        align="center"
+        className={styles.title}
+      >
         Our Trusted Partners
       </Title>
-      <Group position="center" spacing={30}>
+      <Group position="center" className={styles.container}>
         {brands.map((brand, index) => (
           <Card key={index} bg="gray.0">
             <div className={styles['image-wrapper']}>

@@ -1,5 +1,64 @@
+.title {
+  font-size: 1.3rem;
+}
+
+.container {
+  gap: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .image-wrapper {
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 75px;
+  height: 75px;
+}
+
+@media (min-width: 425px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .image-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (min-width: 580px) {
+  .container {
+    gap: 30px;
+  }
+
+  .image-wrapper {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .container {
+    max-width: 750px;
+  }
+
+  .image-wrapper {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 1.75rem;
+  }
 }

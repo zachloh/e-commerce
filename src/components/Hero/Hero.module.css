@@ -19,9 +19,115 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 100px;
+  gap: 30px;
+  overflow-y: auto;
+  padding-bottom: 20px;
 }
 
 .text {
   text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+.primary {
+  font-size: 1.5rem;
+  padding: 100px 10px 0;
+}
+
+.secondary {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.buttons-container {
+  gap: 10px;
+}
+
+.button {
+  font-size: 0.875rem;
+  padding: 0 0.875rem;
+  height: 40px;
+}
+
+@media (min-width: 320px) {
+  .secondary {
+    padding: 0 10px;
+  }
+}
+
+@media (min-width: 375px) {
+  .primary {
+    font-size: 1.7rem;
+  }
+
+  .secondary {
+    font-size: 1.1rem;
+  }
+
+  .buttons-container {
+    gap: 20px;
+  }
+}
+
+@media (min-width: 425px) {
+  .primary {
+    font-size: 2rem;
+  }
+
+  .buttons-container {
+    gap: 30px;
+  }
+
+  .button {
+    font-size: 0.9375rem;
+    padding: 0 0.9375rem;
+    height: 45px;
+  }
+}
+
+@media (min-width: 600px) {
+  .primary {
+    font-size: 2.5rem;
+  }
+
+  .secondary {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .primary {
+    font-size: 3rem;
+  }
+
+  .secondary {
+    font-size: 1.3rem;
+  }
+
+  .button {
+    font-size: 1rem;
+    padding: 0 1.4rem;
+    height: 50px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .primary {
+    font-size: 3.5rem;
+    padding-top: 150px;
+  }
+
+  .secondary {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .primary {
+    font-size: 4rem;
+    padding-top: 200px;
+  }
+
+  .secondary {
+    font-size: 1.5rem;
+  }
 }

@@ -33,9 +33,51 @@
 
 .text {
   text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.5);
+  font-size: 2rem;
 }
 
 .links {
   position: absolute;
   bottom: 0;
+  gap: 10px;
+}
+
+.button {
+  font-size: 0.875rem;
+  padding: 0 0.875rem;
+  height: 40px;
+}
+
+@media (min-width: 375px) {
+  .links {
+    gap: 20px;
+  }
+}
+
+@media (min-width: 425px) {
+  .text {
+    font-size: 2.5rem;
+  }
+
+  .links {
+    gap: 30px;
+  }
+
+  .button {
+    font-size: 0.9375rem;
+    padding: 0 0.9375rem;
+    height: 45px;
+  }
+}
+
+@media (min-width: 768px) {
+  .text {
+    font-size: 3rem;
+  }
+
+  .button {
+    font-size: 1rem;
+    padding: 0 1.4rem;
+    height: 50px;
+  }
 }

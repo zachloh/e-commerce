@@ -15,50 +15,44 @@ const Hero = () => {
           alt="young couple posing in warm winter outfit"
           fill
           placeholder="blur"
+          // TODO: Add sizes
           style={{ objectFit: 'cover', objectPosition: '50% 30%' }}
         />
       </div>
       <div className={styles['hero-content']}>
         <Text
-          size={64}
           color="white"
           weight={600}
-          mt={180}
-          mb={30}
           align="center"
-          className={styles.text}
+          className={`${styles.text} ${styles.primary}`}
         >
           Better when it&apos;s on you.
         </Text>
         <Text
-          size={24}
           color="white"
           weight={600}
-          mb={50}
           maw={500}
           align="center"
-          className={styles.text}
+          className={`${styles.text} ${styles.secondary}`}
         >
           Refresh your style with on-trend pieces from our collection.
         </Text>
-        <Group spacing={30} position="center">
+        <Group position="center" className={styles['buttons-container']}>
           <Button
             variant="default"
-            size="md"
             radius={0}
-            h={50}
             component={Link}
             href="/category/men"
+            className={styles.button}
           >
             SHOP MEN
           </Button>
           <Button
             variant="default"
-            size="md"
             radius={0}
-            h={50}
             component={Link}
             href="/category/women"
+            className={styles.button}
           >
             SHOP WOMEN
           </Button>

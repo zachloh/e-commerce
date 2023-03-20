@@ -22,7 +22,7 @@ const NewArrivals = () => {
         <Text size={48} color="white" weight={600} className={styles.text}>
           New Arrivals
         </Text>
-        <Group className={styles.links} pb={30} spacing={30} position="center">
+        <Group className={styles.links} pb={30} position="center">
           <Button
             variant="default"
             size="md"
@@ -31,6 +31,7 @@ const NewArrivals = () => {
             component={Link}
             href="/category/men?filter=new"
             as="/category/men"
+            className={styles.button}
           >
             SHOP MEN
           </Button>
@@ -42,6 +43,7 @@ const NewArrivals = () => {
             component={Link}
             href="/category/women?filter=new"
             as="/category/women"
+            className={styles.button}
           >
             SHOP WOMEN
           </Button>
