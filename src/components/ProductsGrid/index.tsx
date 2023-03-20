@@ -10,8 +10,6 @@ type ProductsGridProps = {
 };
 
 const ProductsGrid = ({ products, recommendedProducts }: ProductsGridProps) => {
-  // TODO: Change to use Grid
-
   if (products.length === 0) {
     return (
       <Box w="100%">
@@ -27,7 +25,7 @@ const ProductsGrid = ({ products, recommendedProducts }: ProductsGridProps) => {
         <div className={styles.grid}>
           {recommendedProducts.map((product) => (
             <div key={product.id}>
-              <ProductCard product={product} />
+              <ProductCard product={product} withHeart={false} />
             </div>
           ))}
         </div>

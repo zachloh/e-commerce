@@ -1,25 +1,18 @@
 import { getCategories } from '@/api/categories/getCategories';
 import { getProductsByCategory } from '@/api/products/getProductsByCategory';
+import CategoryHeader from '@/components/CategoryHeader';
+import FilterAccordion from '@/components/FilterAccordion';
 import ProductsFilter from '@/components/ProductsFilter';
 import ProductsGrid from '@/components/ProductsGrid';
 import { useFilter } from '@/hooks/useFilter';
 import { Product } from '@/types';
 import { filterProducts } from '@/utils/filterProducts';
 import { sortProducts } from '@/utils/sortProducts';
-import {
-  Container,
-  Divider,
-  Grid,
-  Group,
-  Select,
-  Text,
-  Title,
-} from '@mantine/core';
+import { Container, Divider, Grid, MediaQuery } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import React, { useState } from 'react';
-import { ChevronDown } from 'tabler-icons-react';
 
 interface Params extends ParsedUrlQuery {
   category: string;
@@ -29,11 +22,6 @@ type Props = {
   products: Product[];
   recommendedProducts: Product[];
   category: string;
-};
-
-const title: Record<string, string> = {
-  men: "Men's Clothing",
-  women: "Women's Clothing",
 };
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
@@ -83,6 +71,7 @@ const Category = ({
   const [debouncedSortBy] = useDebouncedValue(sortBy, 300);
   const { filter, debouncedFilter, setFilter, resetFilter } = useFilter();
 
+  // TODO: Add useMemo
   const filteredProducts = filterProducts(products, debouncedFilter);
   const sortedProducts = sortProducts(filteredProducts, debouncedSortBy);
 
@@ -90,49 +79,46 @@ const Category = ({
 
   return (
     <Container size={1400} p={16}>
-      <Grid align="center" m={0}>
-        <Grid.Col span={4} p={0}>
-          <Title size={24}>{title[category]}</Title>
+      <CategoryHeader
+        category={category}
+        sortedProducts={sortedProducts}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+      />
+      <Divider my={10} />
+      <Grid m={0} gutterXs={32} columns={24}>
+        <Grid.Col p={0} span={24} xs={12} sm={9} md={8} lg={7}>
+          <FilterAccordion
+            sortedProducts={sortedProducts}
+            resetFilter={resetFilter}
+          >
+            <ProductsFilter
+              filter={filter}
+              setFilter={setFilter}
+              resetFilter={resetFilter}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+            />
+          </FilterAccordion>
+          <MediaQuery smallerThan="xs" styles={{ display: 'none' }}>
+            <div>
+              <ProductsFilter
+                filter={filter}
+                setFilter={setFilter}
+                resetFilter={resetFilter}
+                sortBy={sortBy}
+                setSortBy={setSortBy}
+              />
+            </div>
+          </MediaQuery>
         </Grid.Col>
-        <Grid.Col span={4} p={0}>
-          <Text color="dark.3" align="center">
-            {sortedProducts.length}{' '}
-            {sortedProducts.length === 1 ? 'item' : 'items'} found
-          </Text>
-        </Grid.Col>
-        <Grid.Col span={4} p={0}>
-          <Select
-            ml="auto"
-            maw={250}
-            maxDropdownHeight={250}
-            rightSection={<ChevronDown size={20} />}
-            data={[
-              { value: 'default', label: 'Popularity' },
-              { value: 'new', label: 'New Arrivals' },
-              { value: 'priceAsc', label: 'Price: Low to High' },
-              { value: 'priceDesc', label: 'Price: High to Low' },
-              { value: 'brandAsc', label: 'Brand: A to Z' },
-              { value: 'brandDesc', label: 'Brand: Z to A' },
-            ]}
-            aria-label="Sort products by"
-            styles={{ rightSection: { pointerEvents: 'none' } }}
-            value={sortBy}
-            onChange={setSortBy}
+        <Grid.Col p={0} span={24} xs={12} sm={15} md={16} lg={17}>
+          <ProductsGrid
+            products={sortedProducts}
+            recommendedProducts={recommendedProducts}
           />
         </Grid.Col>
       </Grid>
-      <Divider my={10} />
-      <Group align="flex-start" noWrap spacing={32}>
-        <ProductsFilter
-          filter={filter}
-          setFilter={setFilter}
-          resetFilter={resetFilter}
-        />
-        <ProductsGrid
-          products={sortedProducts}
-          recommendedProducts={recommendedProducts}
-        />
-      </Group>
     </Container>
   );
 };

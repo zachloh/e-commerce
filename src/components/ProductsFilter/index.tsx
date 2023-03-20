@@ -1,9 +1,17 @@
-import { Accordion, Box, Button, Divider, Group, Text } from '@mantine/core';
+import {
+  Accordion,
+  Button,
+  Divider,
+  Group,
+  MediaQuery,
+  Text,
+} from '@mantine/core';
 import React from 'react';
 import BrandFilter from './BrandFilter';
 import NewArrivalsFilter from './NewArrivalsFilter';
 import PriceFilter from './PriceFilter';
 import SizeFilter from './SizeFilter';
+import Sort from './Sort';
 import TypeFilter from './TypeFilter';
 
 type ProductsFilterProps = {
@@ -26,29 +34,45 @@ type ProductsFilterProps = {
     setBrands: React.Dispatch<React.SetStateAction<string[]>>;
   };
   resetFilter: () => void;
+  sortBy: string | null;
+  setSortBy: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 const ProductsFilter = ({
   filter,
   setFilter,
   resetFilter,
+  sortBy,
+  setSortBy,
 }: ProductsFilterProps) => {
   const { types, price, isNew, sizes, brands } = filter;
   const { setTypes, setMinPrice, setMaxPrice, setIsNew, setSizes, setBrands } =
     setFilter;
 
   return (
-    <Box w={320} sx={{ flexShrink: 0 }}>
-      <Group position="apart" pl={20}>
-        <Text weight={600} size={18}>
-          Filter
-        </Text>
-        <Button variant="subtle" color="gray.7" onClick={resetFilter}>
-          Clear all
-        </Button>
-      </Group>
+    <>
+      <MediaQuery smallerThan="xs" styles={{ display: 'none' }}>
+        <Group position="apart" pl={20}>
+          <Text weight={600} size={18}>
+            Filter
+          </Text>
+          <Button
+            variant="subtle"
+            color="gray.7"
+            onClick={resetFilter}
+            styles={{
+              label: {
+                textDecoration: 'underline',
+              },
+            }}
+          >
+            Clear all
+          </Button>
+        </Group>
+      </MediaQuery>
       <Divider color="gray.3" />
       <Accordion multiple={true} variant="default">
+        <Sort sortBy={sortBy} setSortBy={setSortBy} />
         <TypeFilter types={types} setTypes={setTypes} />
         <PriceFilter
           minPrice={price.minPrice}
@@ -60,7 +84,7 @@ const ProductsFilter = ({
         <SizeFilter sizes={sizes} setSizes={setSizes} />
         <BrandFilter brands={brands} setBrands={setBrands} />
       </Accordion>
-    </Box>
+    </>
   );
 };
 
