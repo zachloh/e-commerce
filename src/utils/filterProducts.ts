@@ -31,7 +31,7 @@ const filterMethods = [
     const min = typeof minPrice === 'number' ? minPrice : 0;
     const max = typeof maxPrice === 'number' ? maxPrice : Infinity;
 
-    if (product.attributes.price > min && product.attributes.price < max) {
+    if (product.attributes.price >= min && product.attributes.price <= max) {
       return true;
     }
 
