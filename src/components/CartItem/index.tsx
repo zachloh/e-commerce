@@ -3,7 +3,6 @@ import {
   ActionIcon,
   Anchor,
   Divider,
-  Grid,
   Group,
   NumberInput,
   NumberInputHandlers,
@@ -44,8 +43,8 @@ const CartItem = ({ item }: CartItemProps) => {
 
   return (
     <>
-      <Grid m={0} gutterXs={30}>
-        <Grid.Col span={4} p={0}>
+      <div className={styles.grid}>
+        <div>
           <Anchor
             component={Link}
             href={`/product/${item.id}`}
@@ -64,11 +63,11 @@ const CartItem = ({ item }: CartItemProps) => {
               />
             </div>
           </Anchor>
-        </Grid.Col>
-        <Grid.Col span={8} p={0}>
+        </div>
+        <div>
           <Stack justify="space-between" h="100%">
             <div>
-              <Group position="apart" w="100%">
+              <Group position="apart" align="flex-start" w="100%" noWrap>
                 <Anchor
                   component={Link}
                   href={`/product/${item.id}`}
@@ -87,8 +86,8 @@ const CartItem = ({ item }: CartItemProps) => {
               <Text weight={600} mb={10}>
                 ${item.attributes.price}.00
               </Text>
-              <Group position="apart">
-                <Group spacing={5}>
+              <Group position="apart" noWrap>
+                <Group spacing={5} noWrap>
                   <ActionIcon
                     size={38}
                     variant="default"
@@ -123,14 +122,14 @@ const CartItem = ({ item }: CartItemProps) => {
                     <Plus size={16} />
                   </ActionIcon>
                 </Group>
-                <Text weight={600}>
+                <Text weight={600} align="right">
                   TOTAL: ${Number(quantity) * item.attributes.price}.00
                 </Text>
               </Group>
             </div>
           </Stack>
-        </Grid.Col>
-      </Grid>
+        </div>
+      </div>
       <Divider my={30} />
     </>
   );

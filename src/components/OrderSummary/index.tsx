@@ -1,6 +1,7 @@
 import { useTotalPrice } from '@/stores/cart';
 import { Button, Card, Divider, Group, Text } from '@mantine/core';
 import React from 'react';
+import styles from './OrderSummary.module.css';
 
 const OrderSummary = () => {
   const { totalPrice, isHydrated } = useTotalPrice();
@@ -11,7 +12,13 @@ const OrderSummary = () => {
   }
 
   return (
-    <Card withBorder maw={500} ml="auto" padding={30} radius={0} bg="gray.0">
+    <Card
+      withBorder
+      padding={30}
+      radius={0}
+      bg="gray.0"
+      className={styles.card}
+    >
       <Text weight={600} size={18} mb={20}>
         Order Summary
       </Text>
