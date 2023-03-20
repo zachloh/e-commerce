@@ -1,13 +1,12 @@
 import { useCartStore } from '@/stores/cart';
 import { useWishlist, useWishlistStore } from '@/stores/wishlist';
 import { Product } from '@/types';
-import { ActionIcon, Button, Group, Select, Text, Title } from '@mantine/core';
+import { ActionIcon, Group, Select, Text, Title } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import { FiHeart } from 'react-icons/fi';
-import { FaShoppingCart } from 'react-icons/fa';
-import { FaBox } from 'react-icons/fa';
 import { ChevronDown } from 'tabler-icons-react';
 import styles from './ProductInfo.module.css';
+import AddToCartBtn from '@/components/AddToCartBtn';
 
 type ProductInfoProps = {
   product: Product;
@@ -78,28 +77,12 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         error={error}
       />
       <Group noWrap mb={20}>
-        <Button
-          h={50}
-          radius={2}
-          w="100%"
+        <AddToCartBtn
+          height={50}
           size="md"
-          onClick={handleAddToCart}
-          disabled={addedToCart}
-          styles={(theme) => ({
-            root: {
-              '&:disabled, &[data-disabled]': {
-                backgroundColor: theme.colors.cyan[6],
-                color: 'white',
-              },
-            },
-          })}
-          className={`${styles['cart-btn']} ${addedToCart ? styles.added : ''}`}
-          aria-label="Add to cart"
-        >
-          <FaShoppingCart className={styles.cart} />
-          <FaBox className={styles.box} />
-          <span className={styles['cart-text']}>ADD TO CART</span>
-        </Button>
+          addedToCart={addedToCart}
+          handleAddToCart={handleAddToCart}
+        />
         <ActionIcon
           variant="outline"
           size={50}

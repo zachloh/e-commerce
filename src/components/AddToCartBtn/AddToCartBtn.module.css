@@ -1,0 +1,84 @@
+.cart-btn {
+  position: relative;
+  overflow: hidden;
+  transition: background-color 500ms ease;
+}
+
+.cart {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  font-size: 1.8rem;
+  transform: translate(calc(-50% - 400px), -50%);
+}
+
+.box {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  font-size: 0.8rem;
+  transform: translate(-20%, calc(-100% - 40px));
+}
+
+.cart-text {
+  opacity: 1;
+}
+
+.added .cart {
+  animation: cart 1.5s ease-in-out forwards;
+}
+
+.added .box {
+  animation: box 1.5s ease-in-out forwards;
+}
+
+.added .cart-text {
+  animation: fade 1.5s ease-in-out forwards;
+}
+
+@keyframes cart {
+  0% {
+    transform: translate(calc(-50% - 400px), -50%);
+  }
+
+  40%,
+  60% {
+    transform: translate(-50%, -50%);
+  }
+
+  100% {
+    transform: translate(calc(-50% + 400px), -50%);
+  }
+}
+
+@keyframes box {
+  0%,
+  40% {
+    transform: translate(-20%, calc(-100% - 40px));
+  }
+
+  60% {
+    transform: translate(-20%, -100%);
+  }
+
+  100% {
+    transform: translate(calc(-20% + 400px), -100%);
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+
+  20%,
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

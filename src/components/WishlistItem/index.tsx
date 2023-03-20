@@ -4,8 +4,9 @@ import { Product } from '@/types';
 import { Anchor, Button, Select, Text } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronDown, Trash } from 'tabler-icons-react';
+import AddToCartBtn from '../AddToCartBtn';
 import styles from './WishlistItem.module.css';
 
 type WishlistItemProps = {
@@ -15,11 +16,20 @@ type WishlistItemProps = {
 const WishlistItem = ({ item }: WishlistItemProps) => {
   const [size, setSize] = useState<string | null>(null);
   const [error, setError] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(false);
 
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromWishlist = useWishlistStore(
     (state) => state.removeFromWishList
   );
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAddedToCart(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [addedToCart]);
 
   const handleAddToCart = () => {
     if (size === null) {
@@ -27,6 +37,7 @@ const WishlistItem = ({ item }: WishlistItemProps) => {
       return;
     }
     addToCart(item, size);
+    setAddedToCart(true);
   };
 
   return (
@@ -70,25 +81,25 @@ const WishlistItem = ({ item }: WishlistItemProps) => {
         styles={{ rightSection: { pointerEvents: 'none' } }}
         aria-label="Pick a size"
         value={size}
-        onChange={setSize}
-        mt={20}
+        onChange={(value) => {
+          setSize(value);
+          setError(false);
+        }}
+        mt={10}
         mb={15}
-        error={error ? 'Please pick a size' : false}
+        error={error}
+      />
+      <AddToCartBtn
+        height={44}
+        size="sm"
+        addedToCart={addedToCart}
+        handleAddToCart={handleAddToCart}
       />
       <Button
         radius={2}
         w="100%"
         h={44}
-        mb={15}
-        onClick={handleAddToCart}
-        disabled={size === null}
-      >
-        ADD TO CART
-      </Button>
-      <Button
-        radius={2}
-        w="100%"
-        h={44}
+        mt={15}
         variant="default"
         leftIcon={<Trash size={18} />}
         onClick={() => removeFromWishlist(item.id)}
