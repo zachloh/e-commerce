@@ -1,5 +1,5 @@
 import { Product } from '@/types';
-import { Grid, Text, Title } from '@mantine/core';
+import { Grid, MediaQuery, Text, Title } from '@mantine/core';
 import React from 'react';
 import ProductImage from './ProductImage';
 import ProductInfo from './ProductInfo';
@@ -11,11 +11,13 @@ type ProductItemProps = {
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
     <>
-      <Grid m={0} gutterMd={50}>
-        <Grid.Col span={6} p={0}>
-          <ProductImage product={product} />
-        </Grid.Col>
-        <Grid.Col span={6} p={0}>
+      <Grid m={0} gutterXs={30} gutterMd={50}>
+        <MediaQuery smallerThan="xs" styles={{ marginBottom: 30 }}>
+          <Grid.Col span={12} sm={6} p={0}>
+            <ProductImage product={product} />
+          </Grid.Col>
+        </MediaQuery>
+        <Grid.Col span={12} sm={6} p={0}>
           <ProductInfo product={product} />
         </Grid.Col>
       </Grid>
