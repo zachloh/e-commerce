@@ -4,6 +4,7 @@ import {
   Divider,
   Group,
   MediaQuery,
+  ScrollArea,
   Text,
 } from '@mantine/core';
 import React from 'react';
@@ -36,6 +37,9 @@ type ProductsFilterProps = {
   resetFilter: () => void;
   sortBy: string | null;
   setSortBy: React.Dispatch<React.SetStateAction<string | null>>;
+  height: string | number;
+  category: string;
+  id: number;
 };
 
 const ProductsFilter = ({
@@ -44,6 +48,9 @@ const ProductsFilter = ({
   resetFilter,
   sortBy,
   setSortBy,
+  height,
+  category,
+  id,
 }: ProductsFilterProps) => {
   const { types, price, isNew, sizes, brands } = filter;
   const { setTypes, setMinPrice, setMaxPrice, setIsNew, setSizes, setBrands } =
@@ -71,19 +78,21 @@ const ProductsFilter = ({
         </Group>
       </MediaQuery>
       <Divider color="gray.3" />
-      <Accordion multiple={true} variant="default">
-        <Sort sortBy={sortBy} setSortBy={setSortBy} />
-        <TypeFilter types={types} setTypes={setTypes} />
-        <PriceFilter
-          minPrice={price.minPrice}
-          setMinPrice={setMinPrice}
-          maxPrice={price.maxPrice}
-          setMaxPrice={setMaxPrice}
-        />
-        <NewArrivalsFilter isNew={isNew} setIsNew={setIsNew} />
-        <SizeFilter sizes={sizes} setSizes={setSizes} />
-        <BrandFilter brands={brands} setBrands={setBrands} />
-      </Accordion>
+      <ScrollArea h={height} type="auto" scrollbarSize={10}>
+        <Accordion multiple={true} variant="default">
+          <Sort sortBy={sortBy} setSortBy={setSortBy} id={id} />
+          <TypeFilter types={types} setTypes={setTypes} category={category} />
+          <PriceFilter
+            minPrice={price.minPrice}
+            setMinPrice={setMinPrice}
+            maxPrice={price.maxPrice}
+            setMaxPrice={setMaxPrice}
+          />
+          <NewArrivalsFilter isNew={isNew} setIsNew={setIsNew} />
+          <SizeFilter sizes={sizes} setSizes={setSizes} />
+          <BrandFilter brands={brands} setBrands={setBrands} />
+        </Accordion>
+      </ScrollArea>
     </>
   );
 };
