@@ -1,4 +1,4 @@
-import { Card, Container, Group, Title } from '@mantine/core';
+import { Card, Container, Group, MediaQuery, rem, Title } from '@mantine/core';
 import Image from 'next/image';
 import React from 'react';
 import countryRoad from '../../../public/images/country-road.png';
@@ -33,33 +33,38 @@ const brands = [
 
 const Brands = () => {
   return (
-    <Container size={1200} px={16} mb={80}>
-      <Title
-        order={2}
-        weight={500}
-        mb={10}
-        align="center"
-        className={styles.title}
-      >
-        Our Trusted Partners
-      </Title>
-      <Group position="center" className={styles.container}>
-        {brands.map((brand, index) => (
-          <Card key={index} bg="gray.0">
-            <div className={styles['image-wrapper']}>
-              <Image
-                src={brand.src}
-                alt={brand.alt}
-                fill
-                placeholder="blur"
-                style={{ objectFit: 'contain' }}
-                // TODO: Add sizes
-              />
-            </div>
-          </Card>
-        ))}
-      </Group>
-    </Container>
+    <MediaQuery
+      largerThan={768}
+      styles={{ paddingLeft: rem(32), paddingRight: rem(32) }}
+    >
+      <Container size={1200} px={16} mb={80}>
+        <Title
+          order={2}
+          weight={500}
+          mb={10}
+          align="center"
+          className={styles.title}
+        >
+          Our Trusted Partners
+        </Title>
+        <Group position="center" className={styles.container}>
+          {brands.map((brand, index) => (
+            <Card key={index} bg="gray.0">
+              <div className={styles['image-wrapper']}>
+                <Image
+                  src={brand.src}
+                  alt={brand.alt}
+                  fill
+                  placeholder="blur"
+                  style={{ objectFit: 'contain' }}
+                  // TODO: Add sizes
+                />
+              </div>
+            </Card>
+          ))}
+        </Group>
+      </Container>
+    </MediaQuery>
   );
 };
 

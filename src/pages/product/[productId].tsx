@@ -4,7 +4,7 @@ import ProductItem from '@/components/ProductItem';
 import ProductCard from '@/components/ProductsGrid/ProductCard';
 import { Product } from '@/types';
 import { Carousel } from '@mantine/carousel';
-import { Container, MediaQuery, SimpleGrid, Title } from '@mantine/core';
+import { Container, MediaQuery, rem, SimpleGrid, Title } from '@mantine/core';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import React from 'react';
@@ -67,54 +67,59 @@ const Product = ({
   recommendedProducts,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <Container size={1200} px={16} py={50}>
-      {product && <ProductItem product={product} />}
-      {recommendedProducts && (
-        <>
-          <Title order={3} size={18} weight={600} mt={30} mb={10}>
-            You May Also Like
-          </Title>
-          <MediaQuery smallerThan={768} styles={{ display: 'none' }}>
-            <SimpleGrid
-              cols={3}
-              spacing={20}
-              breakpoints={[
-                { minWidth: 900, cols: 3, spacing: 30 },
-                { minWidth: 1000, cols: 3, spacing: 40 },
-                { minWidth: 1100, cols: 3, spacing: 40 },
-                { minWidth: 1200, cols: 3, spacing: 50 },
-              ]}
-            >
-              {recommendedProducts.map((product) => {
-                return (
-                  <div key={product.id}>
+    <MediaQuery
+      largerThan={768}
+      styles={{ paddingLeft: rem(32), paddingRight: rem(32) }}
+    >
+      <Container size={1200} px={16} py={50}>
+        {product && <ProductItem product={product} />}
+        {recommendedProducts && (
+          <>
+            <Title order={3} size={18} weight={600} mt={30} mb={10}>
+              You May Also Like
+            </Title>
+            <MediaQuery smallerThan={768} styles={{ display: 'none' }}>
+              <SimpleGrid
+                cols={3}
+                spacing={20}
+                breakpoints={[
+                  { minWidth: 900, cols: 3, spacing: 30 },
+                  { minWidth: 1000, cols: 3, spacing: 40 },
+                  { minWidth: 1100, cols: 3, spacing: 40 },
+                  { minWidth: 1200, cols: 3, spacing: 50 },
+                ]}
+              >
+                {recommendedProducts.map((product) => {
+                  return (
+                    <div key={product.id}>
+                      <ProductCard product={product} withHeart={false} />
+                    </div>
+                  );
+                })}
+              </SimpleGrid>
+            </MediaQuery>
+            <MediaQuery largerThan={768} styles={{ display: 'none' }}>
+              <Carousel
+                slideSize="80%"
+                slideGap="md"
+                withControls={false}
+                loop
+                breakpoints={[
+                  { minWidth: 500, slideSize: '65%', slideGap: 'md' },
+                  { minWidth: 600, slideSize: '50%', slideGap: 'md' },
+                ]}
+              >
+                {recommendedProducts.map((product) => (
+                  <Carousel.Slide key={product.id}>
                     <ProductCard product={product} withHeart={false} />
-                  </div>
-                );
-              })}
-            </SimpleGrid>
-          </MediaQuery>
-          <MediaQuery largerThan={768} styles={{ display: 'none' }}>
-            <Carousel
-              slideSize="80%"
-              slideGap="md"
-              withControls={false}
-              loop
-              breakpoints={[
-                { minWidth: 500, slideSize: '65%', slideGap: 'md' },
-                { minWidth: 600, slideSize: '50%', slideGap: 'md' },
-              ]}
-            >
-              {recommendedProducts.map((product) => (
-                <Carousel.Slide key={product.id}>
-                  <ProductCard product={product} withHeart={false} />
-                </Carousel.Slide>
-              ))}
-            </Carousel>
-          </MediaQuery>
-        </>
-      )}
-    </Container>
+                  </Carousel.Slide>
+                ))}
+              </Carousel>
+            </MediaQuery>
+          </>
+        )}
+      </Container>
+    </MediaQuery>
   );
 };
 
