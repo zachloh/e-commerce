@@ -31,7 +31,7 @@
   }
 }
 
-@media (min-width: 950px) {
+@media (min-width: 992px) {
   .grid {
     grid-template-columns: 1fr 1.5fr;
   }
