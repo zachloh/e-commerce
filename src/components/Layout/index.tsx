@@ -11,7 +11,6 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   const [opened, setOpened] = useState(false);
-
   return (
     <>
       <AppShell
@@ -27,14 +26,13 @@ const Layout = ({ children }: LayoutProps) => {
         }
         navbar={
           opened ? (
-            <Navbar hiddenBreakpoint="sm" hidden={!opened}>
-              <NavbarContent />
+            <Navbar hiddenBreakpoint="sm" hidden={!opened} p={10}>
+              <NavbarContent onClose={() => setOpened(false)} />
             </Navbar>
           ) : undefined
         }
       >
-        {/* TODO: Fix position */}
-        <Box bg="gray.2" h={45} p={16}>
+        <Box bg="gray.2" h={45} p={16} className={styles.sticky}>
           <div className={styles['features-wrapper']}>
             <p className={styles.feature}>FREE SHIPPING</p>
             <p className={styles.feature}>FAST DELIVERY</p>

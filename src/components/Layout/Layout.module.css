@@ -31,6 +31,14 @@
   }
 }
 
+@media (min-width: 576px) {
+  .sticky {
+    position: sticky;
+    top: 70px;
+    z-index: 20;
+  }
+}
+
 @media (min-width: 595px) {
   .features-wrapper {
     gap: 40px;
