@@ -4,18 +4,19 @@ import React from 'react';
 type SortProps = {
   sortBy: string | null;
   setSortBy: React.Dispatch<React.SetStateAction<string | null>>;
+  id: number;
 };
 
-const Sort = ({ sortBy, setSortBy }: SortProps) => {
+const Sort = ({ sortBy, setSortBy, id }: SortProps) => {
   return (
     <MediaQuery largerThan="xs" styles={{ display: 'none' }}>
-      <Accordion.Item value="type">
+      <Accordion.Item value="sort">
         <Accordion.Control>Sort</Accordion.Control>
         <Accordion.Panel>
           <Radio.Group
             value={sortBy || undefined}
             onChange={setSortBy}
-            name="sortProductsBy"
+            name={`sortProductsBy-${id}`}
             aria-label="Sort products by"
           >
             <Stack spacing={10}>
