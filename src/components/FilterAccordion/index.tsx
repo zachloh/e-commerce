@@ -1,6 +1,7 @@
 import { Product } from '@/types';
-import { Accordion, Button, Center, MediaQuery } from '@mantine/core';
-import React from 'react';
+import { Button, Center, Popover, UnstyledButton } from '@mantine/core';
+import React, { useState } from 'react';
+import { RemoveScroll } from 'react-remove-scroll';
 import { ChevronDown } from 'tabler-icons-react';
 import styles from './FilterAccordion.module.css';
 
@@ -15,23 +16,38 @@ const FilterAccordion = ({
   resetFilter,
   children,
 }: FilterAccordionProps) => {
+  const [opened, setOpened] = useState(false);
+
   return (
-    <MediaQuery largerThan="xs" styles={{ display: 'none' }}>
-      <Accordion
-        chevron={<ChevronDown color="white" />}
-        unstyled
-        classNames={{
-          control: styles.control,
-          label: styles.label,
-          chevron: styles.chevron,
-        }}
+    <>
+      <Popover
+        width="target"
+        position="bottom"
+        shadow="md"
+        opened={opened}
+        onChange={setOpened}
+        transitionProps={{ transition: 'scale-y', duration: 50 }}
+        radius={2}
+        offset={0}
       >
-        <Accordion.Item value="filter">
-          <Accordion.Control>
-            FILTER ({sortedProducts.length}{' '}
-            {sortedProducts.length === 1 ? 'ITEM' : 'ITEMS'})
-          </Accordion.Control>
-          <Accordion.Panel>
+        <Popover.Target>
+          <UnstyledButton
+            onClick={() => setOpened((o) => !o)}
+            className={styles.control}
+          >
+            <span className={styles.label}>
+              FILTER ({sortedProducts.length}{' '}
+              {sortedProducts.length === 1 ? 'ITEM' : 'ITEMS'})
+            </span>
+            <span
+              className={`${styles.chevron} ${opened ? styles.active : ''}`}
+            >
+              <ChevronDown color="white" />
+            </span>
+          </UnstyledButton>
+        </Popover.Target>
+        <Popover.Dropdown p={0}>
+          <RemoveScroll>
             <Center>
               <Button
                 variant="subtle"
@@ -48,10 +64,10 @@ const FilterAccordion = ({
               </Button>
             </Center>
             {children}
-          </Accordion.Panel>
-        </Accordion.Item>
-      </Accordion>
-    </MediaQuery>
+          </RemoveScroll>
+        </Popover.Dropdown>
+      </Popover>
+    </>
   );
 };
 
