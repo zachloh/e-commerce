@@ -1,4 +1,4 @@
-import { AppShell, Box, Header, Navbar } from '@mantine/core';
+import { AppShell, Box, Header, Navbar, Transition } from '@mantine/core';
 import React, { useState } from 'react';
 import HeaderContent from './Header';
 import NavbarContent from './Navbar';
@@ -9,8 +9,16 @@ type LayoutProps = {
   children: React.ReactNode;
 };
 
+const slideRight = {
+  in: { transform: 'translateX(0)' },
+  out: { transform: 'translateX(-100%)' },
+  common: { transformOrigin: 'right' },
+  transitionProperty: 'transform',
+};
+
 const Layout = ({ children }: LayoutProps) => {
   const [opened, setOpened] = useState(false);
+
   return (
     <>
       <AppShell
@@ -25,11 +33,19 @@ const Layout = ({ children }: LayoutProps) => {
           </Header>
         }
         navbar={
-          opened ? (
-            <Navbar hiddenBreakpoint="sm" hidden={!opened} p={10}>
-              <NavbarContent onClose={() => setOpened(false)} />
-            </Navbar>
-          ) : undefined
+          <Transition
+            mounted={opened}
+            transition={slideRight}
+            duration={300}
+            exitDuration={300}
+            timingFunction="ease-in-out"
+          >
+            {(styles) => (
+              <Navbar hiddenBreakpoint="sm" p={10} style={styles}>
+                <NavbarContent onClose={() => setOpened(false)} />
+              </Navbar>
+            )}
+          </Transition>
         }
       >
         <Box bg="gray.2" h={45} p={16} className={styles.sticky}>
