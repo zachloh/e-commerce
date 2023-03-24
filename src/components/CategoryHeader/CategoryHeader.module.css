@@ -1,0 +1,12 @@
+.sticky {
+  background-color: white;
+  z-index: 15;
+  margin-top: 8px;
+}
+
+@media (min-width: 576px) {
+  .sticky {
+    position: sticky;
+    top: 115px;
+  }
+}
