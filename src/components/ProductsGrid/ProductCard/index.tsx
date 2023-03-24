@@ -9,9 +9,10 @@ import styles from './ProductCard.module.css';
 
 type ProductCardProps = {
   product: Product;
+  withHeart?: boolean;
 };
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, withHeart = true }: ProductCardProps) => {
   const { wishlist } = useWishlist();
   const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
   const [clicked, setClicked] = useState(false);
@@ -65,15 +66,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
             />
           </div>
         </Anchor>
-        <UnstyledButton
-          className={styles['heart-button']}
-          onClick={handleClickWishlist}
-          aria-label="Add to wishlist"
-        >
-          <FiHeart
-            className={`${styles.heart} ${clicked ? styles.active : ''}`}
-          />
-        </UnstyledButton>
+        {withHeart && (
+          <UnstyledButton
+            className={styles['heart-button']}
+            onClick={handleClickWishlist}
+            aria-label="Add to wishlist"
+          >
+            <FiHeart
+              className={`${styles.heart} ${clicked ? styles.active : ''}`}
+            />
+          </UnstyledButton>
+        )}
       </figure>
       <Anchor
         component={Link}
