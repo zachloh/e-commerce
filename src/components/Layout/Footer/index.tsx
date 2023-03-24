@@ -1,4 +1,4 @@
-import { Group, Title } from '@mantine/core';
+import { Title } from '@mantine/core';
 import React from 'react';
 import {
   BrandFacebook,
@@ -11,30 +11,21 @@ import styles from './Footer.module.css';
 const labels = [
   {
     title: 'COMPANY',
-    listItems: ['About Us', 'Terms & Conditions', 'Careers', 'Privacy Policy'],
+    listItems: ['About Us', 'Partnerships', 'Careers', 'Privacy Policy'],
   },
   {
     title: 'HELP & SUPPORT',
-    listItems: ['FAQs & Contact', 'Delivery', 'Returns', 'Size Guide'],
+    listItems: ['FAQs', 'Delivery', 'Returns', 'Size Guide'],
   },
 ];
 
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <Group
-        maw={1400}
-        mx="auto"
-        pt={50}
-        pb={40}
-        px={16}
-        position="center"
-        align="flex-start"
-        spacing={150}
-      >
+      <div className={styles.container}>
         {labels.map((label, i) => (
           <div key={i}>
-            <Title order={3} color="white" size={14} mb={15}>
+            <Title order={3} color="white" size={14} mb={15} align="center">
               {label.title}
             </Title>
             <ul className={styles.list}>
@@ -45,7 +36,7 @@ const Footer = () => {
           </div>
         ))}
         <div>
-          <Title order={3} color="white" size={14} mb={15}>
+          <Title order={3} color="white" size={14} mb={15} align="center">
             FOLLOW US
           </Title>
           <ul className={styles.list}>
@@ -67,7 +58,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-      </Group>
+      </div>
     </footer>
   );
 };
