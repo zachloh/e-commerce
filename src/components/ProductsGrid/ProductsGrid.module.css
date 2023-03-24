@@ -1,6 +1,9 @@
+.recommended,
 .grid {
-  padding-top: 20px;
-  padding-bottom: 50px;
+  padding-top: 2px;
+  padding-bottom: 20px;
+  padding-left: 2px;
+  padding-right: 2px;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -9,8 +12,16 @@
   column-gap: 1rem;
 }
 
+.recommended {
+  padding-bottom: 40px;
+}
+
 @media (min-width: 576px) {
   .grid {
     padding-top: 35px;
+  }
+
+  .title {
+    padding-top: 28px;
   }
 }
