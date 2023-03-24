@@ -21,8 +21,18 @@
   text-decoration: none;
 }
 
+.icons-wrapper {
+  gap: 8px;
+}
+
 .icon:hover {
   background-color: rgb(255, 255, 255, 0.1);
+}
+
+@media (min-width: 375px) {
+  .icons-wrapper {
+    gap: 16px;
+  }
 }
 
 @media (min-width: 425px) {
