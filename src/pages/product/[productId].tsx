@@ -50,6 +50,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
       props: {
         product: response.data,
         recommendedProducts,
+        key: response.data.id,
       },
     };
   }

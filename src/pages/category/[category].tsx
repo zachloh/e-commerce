@@ -49,6 +49,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
         products: response.data,
         recommendedProducts: response.data.slice(0, 4),
         category: params.category,
+        key: params.category,
       },
     };
   }
@@ -70,8 +71,6 @@ const Category = ({
   const [sortBy, setSortBy] = useState<string | null>('default');
   const [debouncedSortBy] = useDebouncedValue(sortBy, 300);
   const { filter, debouncedFilter, setFilter, resetFilter } = useFilter();
-
-  // TODO: reset state on route change
 
   // TODO: Add useMemo
   const filteredProducts = filterProducts(products, debouncedFilter);
