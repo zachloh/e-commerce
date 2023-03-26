@@ -1,6 +1,13 @@
 import WishlistItem from '@/components/WishlistItem';
 import { useWishlist } from '@/stores/wishlist';
-import { Container, MediaQuery, rem, SimpleGrid, Title } from '@mantine/core';
+import {
+  Container,
+  MediaQuery,
+  rem,
+  SimpleGrid,
+  Text,
+  Title,
+} from '@mantine/core';
 import { motion, AnimatePresence } from 'framer-motion';
 import React from 'react';
 
@@ -11,8 +18,6 @@ const Wishlist = () => {
     return null;
   }
 
-  // TODO: Show when no wishlist item
-
   return (
     <MediaQuery
       largerThan={768}
@@ -22,34 +27,52 @@ const Wishlist = () => {
         <Title order={1} size={28} mb={20}>
           My Wishlist
         </Title>
-        <SimpleGrid
-          cols={1}
-          spacing={36}
-          breakpoints={[
-            { minWidth: 500, cols: 2, spacing: 24 },
-            { minWidth: 768, cols: 3, spacing: 24 },
-            { minWidth: 1200, cols: 4, spacing: 24 },
-            { minWidth: 1400, cols: 4, spacing: 48 },
-          ]}
-        >
-          <AnimatePresence>
-            {wishlist.map((item) => (
-              <motion.div
-                key={item.id}
-                layout
-                initial={false}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{
-                  opacity: { ease: 'linear' },
-                  layout: { duration: 0.4 },
-                }}
-              >
-                <WishlistItem item={item} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </SimpleGrid>
+        <AnimatePresence initial={false}>
+          {wishlist.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Text mt={30} mb={20} align="center" size={18} weight={500}>
+                Your wishlist is currently empty.
+              </Text>
+              <Text align="center">
+                Click the heart button to add items on your wishlist.
+              </Text>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        {wishlist.length > 0 && (
+          <SimpleGrid
+            cols={1}
+            spacing={36}
+            breakpoints={[
+              { minWidth: 500, cols: 2, spacing: 24 },
+              { minWidth: 768, cols: 3, spacing: 24 },
+              { minWidth: 1200, cols: 4, spacing: 24 },
+              { minWidth: 1400, cols: 4, spacing: 48 },
+            ]}
+          >
+            <AnimatePresence>
+              {wishlist.map((item) => (
+                <motion.div
+                  key={item.id}
+                  layout
+                  initial={false}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    opacity: { ease: 'linear' },
+                    layout: { duration: 0.4 },
+                  }}
+                >
+                  <WishlistItem item={item} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </SimpleGrid>
+        )}
       </Container>
     </MediaQuery>
   );
