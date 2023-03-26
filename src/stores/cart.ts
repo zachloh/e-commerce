@@ -14,6 +14,7 @@ type Cart = {
   increment: (id: number, size: string) => void;
   decrement: (id: number, size: string) => void;
   removeFromCart: (id: number, size: string) => void;
+  resetCart: () => void;
 };
 
 export const useCartStore = create<Cart>()(
@@ -102,6 +103,13 @@ export const useCartStore = create<Cart>()(
               }
               return true;
             }),
+          };
+        }),
+
+      resetCart: () =>
+        set(() => {
+          return {
+            cart: [],
           };
         }),
     }),
