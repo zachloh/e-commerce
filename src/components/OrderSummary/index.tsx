@@ -8,13 +8,9 @@ import getStripe from '@/utils/getStripe';
 import styles from './OrderSummary.module.css';
 
 const OrderSummary = () => {
-  const { totalPrice, isHydrated } = useTotalPrice();
+  const { totalPrice } = useTotalPrice();
   const { cart } = useCart();
   const [loading, setLoading] = useState(false);
-
-  if (!isHydrated) {
-    return null;
-  }
 
   const handleCheckout = async () => {
     try {
