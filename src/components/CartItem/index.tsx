@@ -56,8 +56,7 @@ const CartItem = ({ item }: CartItemProps) => {
                 alt={item.attributes.image1.data.attributes.alternativeText}
                 fill
                 style={{ objectFit: 'cover', objectPosition: '50% 10%' }}
-                // TODO: Set sizes
-                sizes="25vw"
+                sizes="(min-width: 992px) 250px, (min-width: 768px) 50vw, (min-width: 500px) 235px, 100vw"
                 placeholder="blur"
                 blurDataURL={item.attributes.image1.data.attributes.placeholder}
               />

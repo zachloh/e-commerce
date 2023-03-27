@@ -10,9 +10,14 @@ import styles from './ProductCard.module.css';
 type ProductCardProps = {
   product: Product;
   withHeart?: boolean;
+  sizes: string;
 };
 
-const ProductCard = ({ product, withHeart = true }: ProductCardProps) => {
+const ProductCard = ({
+  product,
+  withHeart = true,
+  sizes,
+}: ProductCardProps) => {
   const { wishlist } = useWishlist();
   const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
   const [clicked, setClicked] = useState(false);
@@ -43,8 +48,7 @@ const ProductCard = ({ product, withHeart = true }: ProductCardProps) => {
               alt={product.attributes.image1.data.attributes.alternativeText}
               fill
               style={{ objectFit: 'cover', objectPosition: '50% 10%' }}
-              // TODO: Set sizes
-              sizes="25vw"
+              sizes={sizes}
               placeholder="blur"
               blurDataURL={
                 product.attributes.image1.data.attributes.placeholder
@@ -56,8 +60,7 @@ const ProductCard = ({ product, withHeart = true }: ProductCardProps) => {
               alt={product.attributes.image2.data.attributes.alternativeText}
               fill
               style={{ objectFit: 'cover', objectPosition: '50% 10%' }}
-              // TODO: Set sizes
-              sizes="25vw"
+              sizes={sizes}
               placeholder="blur"
               blurDataURL={
                 product.attributes.image2.data.attributes.placeholder

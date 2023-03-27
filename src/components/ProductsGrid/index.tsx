@@ -25,7 +25,11 @@ const ProductsGrid = ({ products, recommendedProducts }: ProductsGridProps) => {
         <div className={styles.recommended}>
           {recommendedProducts.map((product) => (
             <div key={product.id}>
-              <ProductCard product={product} withHeart={false} />
+              <ProductCard
+                product={product}
+                withHeart={false}
+                sizes="(min-width: 1280px) 230px, (min-width: 1034px) 25vw, (min-width: 768px) 33vw, (min-width: 452px) 50vw, 100vw"
+              />
             </div>
           ))}
         </div>
@@ -37,7 +41,10 @@ const ProductsGrid = ({ products, recommendedProducts }: ProductsGridProps) => {
     <div className={styles.grid}>
       {products.map((product) => (
         <div key={product.id}>
-          <ProductCard product={product} />
+          <ProductCard
+            product={product}
+            sizes="(min-width: 1280px) 230px, (min-width: 1034px) 25vw, (min-width: 768px) 33vw, (min-width: 452px) 50vw, 100vw"
+          />
         </div>
       ))}
     </div>

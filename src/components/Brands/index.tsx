@@ -57,7 +57,7 @@ const Brands = () => {
                   fill
                   placeholder="blur"
                   style={{ objectFit: 'contain' }}
-                  // TODO: Add sizes
+                  sizes="150px"
                 />
               </div>
             </Card>

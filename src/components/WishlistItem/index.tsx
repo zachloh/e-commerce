@@ -53,8 +53,7 @@ const WishlistItem = ({ item }: WishlistItemProps) => {
             alt={item.attributes.image1.data.attributes.alternativeText}
             fill
             style={{ objectFit: 'cover', objectPosition: '50% 10%' }}
-            // TODO: Set sizes
-            sizes="25vw"
+            sizes="(min-width: 1400px) 298px, (min-width: 1200px) 25vw, (min-width: 768px) 33vw, (min-width: 500px) 50vw, 100vw"
             placeholder="blur"
             blurDataURL={item.attributes.image1.data.attributes.placeholder}
           />

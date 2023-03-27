@@ -15,7 +15,7 @@ const NewArrivals = () => {
           fill
           placeholder="blur"
           style={{ objectFit: 'cover' }}
-          // TODO: Add sizes
+          sizes="(min-width: 1200px) 1200px, 100vw"
         />
       </div>
       <div className={styles.content}>

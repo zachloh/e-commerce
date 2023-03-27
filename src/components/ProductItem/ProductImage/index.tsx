@@ -30,8 +30,7 @@ const ProductImage = ({ product }: ProductImageProps) => {
             alt={product.attributes.image1.data.attributes.alternativeText}
             fill
             style={{ objectFit: 'cover', objectPosition: '50% 10%' }}
-            // TODO: Set sizes
-            sizes="40vw"
+            sizes="(min-width: 1200px) 543px, (min-width: 768px) 50vw, 100vw"
             placeholder="blur"
             blurDataURL={product.attributes.image1.data.attributes.placeholder}
             priority
@@ -45,8 +44,7 @@ const ProductImage = ({ product }: ProductImageProps) => {
             alt={product.attributes.image2.data.attributes.alternativeText}
             fill
             style={{ objectFit: 'cover', objectPosition: '50% 10%' }}
-            // TODO: Set sizes
-            sizes="40vw"
+            sizes="(min-width: 1200px) 543px, (min-width: 768px) 50vw, 100vw"
             placeholder="blur"
             blurDataURL={product.attributes.image2.data.attributes.placeholder}
             priority

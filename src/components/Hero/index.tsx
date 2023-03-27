@@ -15,7 +15,7 @@ const Hero = () => {
           alt="young couple posing in warm winter outfit"
           fill
           placeholder="blur"
-          // TODO: Add sizes
+          sizes="100vw"
           style={{ objectFit: 'cover', objectPosition: '50% 30%' }}
         />
       </div>

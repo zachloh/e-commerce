@@ -29,7 +29,11 @@ const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
         >
           {products.map((product) => (
             <div key={product.id}>
-              <ProductCard product={product} withHeart={false} />
+              <ProductCard
+                product={product}
+                withHeart={false}
+                sizes="(min-width: 1200px) 262px, (min-width: 900px) 25vw, (min-width: 425px) 50vw, 100vw"
+              />
             </div>
           ))}
         </SimpleGrid>
