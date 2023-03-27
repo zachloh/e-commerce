@@ -101,7 +101,6 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         Material
       </Text>
       <Text size={14} color="dark.3" mb={20}>
-        {/* TODO: Add material in strapi */}
         100% Cotton
       </Text>
       <Text weight={600} size={15}>
