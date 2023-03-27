@@ -73,17 +73,14 @@ const Category = ({
   const [debouncedSortBy] = useDebouncedValue(sortBy, 300);
   const { filter, debouncedFilter, setFilter, resetFilter } = useFilter();
 
-  // TODO: Add useMemo
   const filteredProducts = filterProducts(products, debouncedFilter);
   const sortedProducts = sortProducts(filteredProducts, debouncedSortBy);
 
   return (
     <>
       <Head>
-        <title>
-          {category === 'men' ? "Men's Clothing | LUXE" : ''}
-          {category === 'women' ? "Women's Clothing | LUXE" : ''}
-        </title>
+        {category === 'men' && <title>Men&apos;s Clothing | LUXE</title>}
+        {category === 'women' && <title>Women&apos;s Clothing | LUXE</title>}
       </Head>
       <MediaQuery
         largerThan={768}
