@@ -72,7 +72,7 @@ const Product = ({
     <>
       {product && (
         <Head>
-          <title>{product.attributes.title} | LUXE</title>
+          <title>{`${product.attributes.title} | LUXE`}</title>
         </Head>
       )}
       <MediaQuery
@@ -100,7 +100,11 @@ const Product = ({
                   {recommendedProducts.map((product) => {
                     return (
                       <div key={product.id}>
-                        <ProductCard product={product} withHeart={false} />
+                        <ProductCard
+                          product={product}
+                          withHeart={false}
+                          sizes="(min-width: 1200px) 346px, 33vw"
+                        />
                       </div>
                     );
                   })}
@@ -119,7 +123,11 @@ const Product = ({
                 >
                   {recommendedProducts.map((product) => (
                     <Carousel.Slide key={product.id}>
-                      <ProductCard product={product} withHeart={false} />
+                      <ProductCard
+                        product={product}
+                        withHeart={false}
+                        sizes="(min-width: 1200px) 560px, (min-width: 600px) 50vw, (min-width: 500px) 65vw, 80vw"
+                      />
                     </Carousel.Slide>
                   ))}
                 </Carousel>
