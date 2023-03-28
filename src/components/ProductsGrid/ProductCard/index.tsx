@@ -1,6 +1,6 @@
 import { useWishlist, useWishlistStore } from '@/stores/wishlist';
 import { Product } from '@/types';
-import { Anchor, Text, UnstyledButton } from '@mantine/core';
+import { Anchor, Text, UnstyledButton, useMantineTheme } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -18,6 +18,7 @@ const ProductCard = ({
   withHeart = true,
   sizes,
 }: ProductCardProps) => {
+  const theme = useMantineTheme();
   const { wishlist } = useWishlist();
   const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
   const [clicked, setClicked] = useState(false);
@@ -64,6 +65,7 @@ const ProductCard = ({
             aria-label="Add to wishlist"
           >
             <FiHeart
+              color={theme.colors.cyan[8]}
               className={`${styles.heart} ${clicked ? styles.active : ''}`}
             />
           </UnstyledButton>
