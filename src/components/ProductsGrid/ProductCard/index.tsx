@@ -55,18 +55,6 @@ const ProductCard = ({
               }
               className={styles.primary}
             />
-            <Image
-              src={product.attributes.image2.data.attributes.url}
-              alt={product.attributes.image2.data.attributes.alternativeText}
-              fill
-              style={{ objectFit: 'cover', objectPosition: '50% 10%' }}
-              sizes={sizes}
-              placeholder="blur"
-              blurDataURL={
-                product.attributes.image2.data.attributes.placeholder
-              }
-              className={styles.secondary}
-            />
           </div>
         </Anchor>
         {withHeart && (
