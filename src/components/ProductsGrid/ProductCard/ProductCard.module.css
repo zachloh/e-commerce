@@ -40,11 +40,11 @@
 .heart {
   width: 24px;
   height: 24px;
-  stroke-width: 1.5px;
+  stroke-width: 2px;
 }
 
 .heart path {
-  color: black;
+  color: var(--mantine-color-cyan-8);
   fill: transparent;
 }
 
