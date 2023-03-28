@@ -12,7 +12,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (typeof sessionId === 'string') {
     try {
       const session = await stripe.checkout.sessions.retrieve(sessionId);
-      const isPaymentSuccessful = session.payment_status === 'paid';
+      const currentTime = Math.floor(Date.now() / 1000);
+
+      const isPaymentSuccessful =
+        session.payment_status === 'paid' && session.expires_at > currentTime;
 
       if (isPaymentSuccessful) {
         return {
