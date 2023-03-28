@@ -65,7 +65,7 @@ const ProductCard = ({
             aria-label="Add to wishlist"
           >
             <FiHeart
-              color={theme.colors.cyan[8]}
+              color={theme.colors.cyan[7]}
               className={`${styles.heart} ${clicked ? styles.active : ''}`}
             />
           </UnstyledButton>
