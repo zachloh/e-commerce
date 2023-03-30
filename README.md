@@ -1,38 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Luxe
 
-## Getting Started
+#### A responsive e-commerce site built with:
 
-First, run the development server:
+- **Client**: TypeScript, Next.js, Zustand, Mantine
+- **Server**: Strapi, Stripe API, Cloudinary
+
+## Demo
+
+### [Live Demo](https://luxe-store.vercel.app)
+
+![home](https://user-images.githubusercontent.com/91587325/228783740-1d910d3e-ca84-46eb-898c-79e825308216.png)
+![mens](https://user-images.githubusercontent.com/91587325/228784921-38a0fd5a-52a4-4274-8dd5-1787c792a871.png)
+![product](https://user-images.githubusercontent.com/91587325/228785716-4661ca8f-ec3f-4421-ab6c-0b3fc8955718.png)
+![cart](https://user-images.githubusercontent.com/91587325/228791200-e08aaa22-bd12-43ac-80b6-4942dd8a3fb3.png)
+
+## What I learned
+
+- Implementing Next.js features:
+  - `getStaticPaths` with `getStaticProps`
+  - `getServerSideProps`
+  - Image optimization with Next.js Image Component 
+- Working with a headless CMS - Strapi
+- Storing images in Cloudinary via `strapi/provider-upload-cloudinary` plugin 
+- Using Zustand for global state management and its Persist middleware
+- Basic animation with Framer Motion
+- Integrating Stripe for online payments
+
+## Further Improvements
+
+- Add user authentication via 'Users & Permissions' plugin in Strapi
+- Store wishlist and cart data in the database instead of localStorage
+- Add end-to-end and integration tests
+
+## Run Locally
+
+- Clone repo
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+  git clone https://github.com/zachloh/e-commerce.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- env variable: API_TOKEN, API_URL, STRIPE_SECRET_KEY, NEXT_PUBLIC_API_URL, NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY, NEXT_PUBLIC_ORDER_TOKEN
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+  npm install
+  npm run dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Note: The strapi application is hosted in a separate, private repo
